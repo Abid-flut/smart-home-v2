@@ -36,7 +36,7 @@ class WeatherProvider extends ChangeNotifier{
     catch(e){
       _weather = null;
       _status = WeatherStatus.error;
-      _errorMessage = "Coundnt fetch";
+      _errorMessage = "Couldn't fetch";
     }
     notifyListeners();
   }
