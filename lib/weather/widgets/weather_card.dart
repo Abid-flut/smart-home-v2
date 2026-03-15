@@ -48,7 +48,11 @@ class _WeatherCardState extends State<WeatherCard>{
       final data = weather.weather!;
       content = Column(
         children: [
-          Text("${data.city}",style: TextStyle(color: Colors.white,fontSize: 30),),
+          Text(data.city,style: TextStyle(color: Colors.white,fontSize: 30),),
+          SizedBox(height: 10,),
+          Image.network("https://openweathermap.org/img/wn/${data.iconCode}@2x.png",),
+          SizedBox(height: 10,),
+          Text(data.condition,style: TextStyle(color: Colors.white70,fontSize: 18),),
           SizedBox(height: 10,),
           Text("${data.temperature}°C",style: TextStyle(color: Colors.white,fontSize: 50),),
         ],
@@ -98,16 +102,28 @@ class _WeatherCardState extends State<WeatherCard>{
               end: Alignment.bottomRight,
             ),
           ),
-          child: Column(
-            children:  [
-              header,
-              SizedBox(height: 10,),
-              content,
-            ],
-          ),
+          child: RefreshIndicator(
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                child: Center(
+                  child:Column(
+                    children: [
+                      header,
+                      SizedBox(height:10),
+                      content
+                    ],
+                  ) ,
+                ),
+                ),
+
+              onRefresh: () async {
+                return context.read<WeatherProvider>().fetchWeather("Bucharest");
+              }
+          )
         ),
       ),
     );
   }
 
 }
+

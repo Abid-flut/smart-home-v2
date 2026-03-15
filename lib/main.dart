@@ -7,20 +7,21 @@ import 'package:smart_home_v2/auth/services/mock_auth_service.dart';
 import 'package:smart_home_v2/devices/device_provider.dart';
 import 'package:smart_home_v2/weather/services/mock_weather_service.dart';
 import 'package:smart_home_v2/weather/weather_provider.dart';
-
+import 'package:smart_home_v2/weather/services/real_weather_service.dart';
 import 'home/home_screen.dart';
 
 void main(){
 
   MockAuthService mockAuth = MockAuthService();
   MockWeatherService mockWeather = MockWeatherService();
+  RealWeatherService realWeather = RealWeatherService();
 
   runApp(
     MultiProvider(
         providers:[
           ChangeNotifierProvider(create: (_)=>AuthProvider(auth: mockAuth)),
           ChangeNotifierProvider(create: (_)=>DeviceProvider()),
-          ChangeNotifierProvider(create: (_)=>WeatherProvider(service: mockWeather)),
+          ChangeNotifierProvider(create: (_)=>WeatherProvider(service: realWeather)),
 
         ],
         child: const MyApp(),

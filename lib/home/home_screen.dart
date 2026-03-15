@@ -26,11 +26,7 @@ class _HomeScreenState extends State<HomeScreen>{
         style: TextStyle(color: Colors.white)
         ),
       ),
-      body: ListView(
-        children: [
-          WeatherCard(),
-        ],
-      ),
+      body: WeatherCard()
     );
   }
 
