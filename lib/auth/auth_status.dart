@@ -1,2 +1,2 @@
 
-enum AuthStatus{loading,authenticated,unauthenticated,error}
+enum AuthStatus{loading,checkingSession,authenticated,unauthenticated,error}

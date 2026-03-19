@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_home_v2/shared/app_bar.dart';
 import 'package:smart_home_v2/weather/widgets/weather_card.dart';
 
 class HomeScreen extends StatefulWidget{
@@ -18,14 +19,7 @@ class _HomeScreenState extends State<HomeScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF242B3A),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF1F2430),
-        elevation: 0,
-        centerTitle: true,
-        title: const Text("HomeScreen",
-        style: TextStyle(color: Colors.white)
-        ),
-      ),
+      appBar: MainAppBar(),
       body: WeatherCard()
     );
   }

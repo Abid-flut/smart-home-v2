@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:smart_home_v2/auth/auth_status.dart";
+import "package:smart_home_v2/auth/models/auth_user.dart";
 import "package:smart_home_v2/auth/services/auth_service.dart";
 
 
@@ -14,18 +15,20 @@ class AuthProvider extends ChangeNotifier{
 
   AuthStatus _status = AuthStatus.unauthenticated;
   String? _authError;
+  AuthUser? _user;
 
+  AuthUser? get user => _user;
   String? get authError => _authError;
   AuthStatus get status => _status;
 
   Future<void> login(String username,String password) async{
 
     _authError = null;
-    _status = AuthStatus.unauthenticated;
+    _status = AuthStatus.loading;
     notifyListeners();
 
     try{
-      await _auth.login(username, password);
+      _user = await _auth.login(username, password);
       _status = AuthStatus.authenticated;
     }
     catch(e){
@@ -45,6 +48,7 @@ class AuthProvider extends ChangeNotifier{
     try{
       await _auth.logout();
       _status = AuthStatus.unauthenticated;
+      _user = null;
     }
     catch(e){
       _status = AuthStatus.error;
@@ -52,4 +56,22 @@ class AuthProvider extends ChangeNotifier{
     }
     notifyListeners();
   }
+
+  Future<void> restoreSession() async{
+
+    _status = AuthStatus.checkingSession;
+    notifyListeners();
+
+    _user = await _auth.getCurrentUser();
+
+    if(_user!=null){
+      _status = AuthStatus.authenticated;
+    }
+    else{
+      _status = AuthStatus.unauthenticated;
+    }
+    notifyListeners();
+
+  }
 }
+
