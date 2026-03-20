@@ -12,6 +12,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget{
   Widget build(BuildContext context) {
 
     final auth = Provider.of<AuthProvider>(context);
+    final user = auth.user;
     
     void logout(){
       auth.logout();
@@ -21,7 +22,7 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget{
       backgroundColor: const Color(0xFF1F2430),
       elevation: 0,
       centerTitle: true,
-      title: const Text("HomeScreen",
+      title: Text("Home( ${user?.email} )",
           style: TextStyle(color: Colors.white)
       ),
       actions: [

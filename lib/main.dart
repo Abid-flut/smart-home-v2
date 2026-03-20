@@ -4,6 +4,7 @@ import 'package:smart_home_v2/auth/auth_gate.dart';
 
 import 'package:smart_home_v2/auth/auth_provider.dart';
 import 'package:smart_home_v2/auth/auth_status.dart';
+import 'package:smart_home_v2/auth/screens/login_screen.dart';
 import 'package:smart_home_v2/auth/services/mock_auth_service.dart';
 import 'package:smart_home_v2/devices/device_provider.dart';
 import 'package:smart_home_v2/weather/services/mock_weather_service.dart';

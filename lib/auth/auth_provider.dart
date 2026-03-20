@@ -33,7 +33,7 @@ class AuthProvider extends ChangeNotifier{
     }
     catch(e){
       _status = AuthStatus.error;
-      _authError = "Couldn't log in";
+      _authError = "Invalid username or password";
     }
 
     notifyListeners();
@@ -72,6 +72,12 @@ class AuthProvider extends ChangeNotifier{
     }
     notifyListeners();
 
+  }
+
+  void clearError(){
+    _authError = null;
+    _status = AuthStatus.unauthenticated;
+    notifyListeners();
   }
 }
 
