@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home_v2/auth/auth_provider.dart';
+import 'package:smart_home_v2/devices/device_provider.dart';
+import 'package:smart_home_v2/devices/widgets/devices_list.dart';
 import 'package:smart_home_v2/shared/app_bar.dart';
 import 'package:smart_home_v2/shared/welcome_text.dart';
 import 'package:smart_home_v2/weather/widgets/weather_card.dart';
@@ -22,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen>{
   Widget build(BuildContext context) {
 
     final user = context.watch<AuthProvider>().user;
+    final deviceProvider = context.watch<DeviceProvider>();
 
     return Scaffold(
       backgroundColor: const Color(0xFF242B3A),
@@ -34,6 +37,10 @@ class _HomeScreenState extends State<HomeScreen>{
               WelcomeText(email: user!.email,),
               SizedBox(height: 10,),
               WeatherCard(),
+              SizedBox(height: 10,),
+              Expanded(
+                  child: DevicesList()
+              ),
             ],
           )
       )

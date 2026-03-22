@@ -27,7 +27,7 @@ void main(){
                 provider.restoreSession();
                 return provider;
           },),
-          ChangeNotifierProvider(create: (_)=>DeviceProvider()),
+          ChangeNotifierProvider(create: (_)=>DeviceProvider(_service)),
           ChangeNotifierProvider(create: (_)=>WeatherProvider(service: realWeather)),
 
         ],
