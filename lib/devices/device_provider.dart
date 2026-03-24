@@ -60,6 +60,14 @@ class DeviceProvider extends ChangeNotifier{
 
   }
 
+  void clearDevices() {
+
+    _devices.clear();
+    notifyListeners();
+
+
+  }
+
 
 
 

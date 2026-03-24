@@ -7,6 +7,4 @@ abstract class DeviceService {
   Future<DeviceModel> toggleDevice(String id);
 
 
-
-
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_home_v2/auth/auth_provider.dart';
 import 'package:smart_home_v2/devices/device_provider.dart';
+import 'package:smart_home_v2/devices/widgets/devices_card.dart';
 import 'package:smart_home_v2/devices/widgets/devices_list.dart';
 import 'package:smart_home_v2/shared/app_bar.dart';
 import 'package:smart_home_v2/shared/welcome_text.dart';
@@ -21,6 +22,14 @@ class HomeScreen extends StatefulWidget{
 class _HomeScreenState extends State<HomeScreen>{
 
   @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      context.read<DeviceProvider>().fetchDevices();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     final user = context.watch<AuthProvider>().user;
@@ -31,17 +40,17 @@ class _HomeScreenState extends State<HomeScreen>{
       appBar: MainAppBar(),
       body: Padding(
           padding: EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              WelcomeText(email: user!.email,),
-              SizedBox(height: 10,),
-              WeatherCard(),
-              SizedBox(height: 10,),
-              Expanded(
-                  child: DevicesList()
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                WelcomeText(email: user!.email,),
+                SizedBox(height: 10,),
+                WeatherCard(),
+                SizedBox(height: 10,),
+                DevicesCard(),
+              ],
+            ),
           )
       )
     );
