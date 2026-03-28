@@ -4,7 +4,7 @@ abstract class DeviceService {
 
   Future<List<DeviceModel>> fetchDevices();
 
-  Future<DeviceModel> toggleDevice(String id);
+  Future<void> toggleDevice(String id, bool isCurrentlyOn);
 
 
 }

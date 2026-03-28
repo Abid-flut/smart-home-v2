@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:smart_home_v2/devices/device_status.dart';
 import 'package:smart_home_v2/devices/models/device_model.dart';
+import 'package:smart_home_v2/devices/power_state.dart';
 import 'package:smart_home_v2/devices/services/device_service.dart';
+import 'package:smart_home_v2/devices/services/ha_websocket_service.dart';
 
 
 class DeviceProvider extends ChangeNotifier{
@@ -42,15 +44,15 @@ class DeviceProvider extends ChangeNotifier{
 
   Future<void> toggleDevice(String id) async{
 
+    final device = _devices.firstWhere((d) => d.id == id);
+    final isCurrentlyOn = device.powerState == PowerState.on;
+
     _deviceStatus[id] = DeviceStatus.updating;
     notifyListeners();
 
     try{
-      final updatedDevice = await _service.toggleDevice(id);
-      int index = _devices.indexWhere((d)=> d.id == id);
-      if(index != -1){
-        _devices[index] = updatedDevice;
-      }
+      await _service.toggleDevice(id,isCurrentlyOn);
+      await fetchDevices();
       _deviceStatus[id] = DeviceStatus.idle;
     }
     catch(e){
@@ -67,7 +69,6 @@ class DeviceProvider extends ChangeNotifier{
 
 
   }
-
 
 
 

@@ -2,7 +2,7 @@ import 'package:smart_home_v2/devices/models/device_model.dart';
 import 'package:smart_home_v2/devices/power_state.dart';
 import 'package:smart_home_v2/devices/services/device_service.dart';
 
-class MockDeviceService implements DeviceService{
+class MockDeviceService {
 
   final List<DeviceModel> _devices = [
     DeviceModel(id: "1", name: "Living Room Light", powerState: PowerState.on, type: "light"),

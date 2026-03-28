@@ -37,9 +37,27 @@ class HaDeviceService implements DeviceService {
   }
 
   @override
-  Future<DeviceModel> toggleDevice(String id) async {
-    await Future.delayed(Duration(seconds: 2));
-    throw UnimplementedError("Toggle not implemented yet");
+  Future<void> toggleDevice(String id,bool isCurrentlyOn) async {
+    final action = isCurrentlyOn? "turn_off" : "turn_on";
+
+    final response = await http.post(
+      Uri.parse("${HaConfig.baseUrl}/api/services/switch/$action"),
+      headers: {
+        "Authorization" : "Bearer ${HaConfig.token}",
+        "Content-Type" : "application/json"
+
+      },
+      body: jsonEncode({
+        "entity_id" : id
+      }),
+      
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception("Failed to toggle device");
+    }
+    
+    
   }
 
 }
