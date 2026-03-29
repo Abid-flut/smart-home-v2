@@ -14,9 +14,13 @@ import 'package:smart_home_v2/devices/services/mock_device_service.dart';
 import 'package:smart_home_v2/weather/services/mock_weather_service.dart';
 import 'package:smart_home_v2/weather/weather_provider.dart';
 import 'package:smart_home_v2/weather/services/real_weather_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'home/home_screen.dart';
 
-void main(){
+Future<void> main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
   MockAuthService mockAuth = MockAuthService();
   MockWeatherService mockWeather = MockWeatherService();
