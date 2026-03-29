@@ -14,5 +14,19 @@ class DeviceModel {
     required this.type
   });
 
+  DeviceModel copyWith({
+    String? id,
+    String? name,
+    PowerState? powerState,
+    String? type,
+  }){
+    return DeviceModel(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        powerState: powerState ?? this.powerState,
+        type: type ?? this.type);
+
+  }
+
 
 }

@@ -28,7 +28,10 @@ class _HomeScreenState extends State<HomeScreen>{
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<DeviceProvider>().fetchDevices();
+      final provider = context.read<DeviceProvider>();
+
+      provider.fetchDevices();
+      provider.initWebSocket();
     });
   }
 
@@ -49,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen>{
               children: [
                 WelcomeText(email: user!.email,),
                 SizedBox(height: 10,),
-                ElevatedButton(onPressed: HaWebSocketService().connect, child: Text("Test WebSocket")),
+                //ElevatedButton(onPressed: HaWebSocketService().connect, child: Text("Test WebSocket")),
                 SizedBox(height: 10,),
                 WeatherCard(),
                 SizedBox(height: 10,),

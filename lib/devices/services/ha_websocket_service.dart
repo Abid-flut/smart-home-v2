@@ -4,6 +4,10 @@ import 'dart:convert';
 
 class HaWebSocketService{
 
+  final Function(String,String) onDeviceUpdate;
+
+  HaWebSocketService(this.onDeviceUpdate);
+
   WebSocketChannel? _channel;
 
   void connect(){
@@ -19,6 +23,30 @@ class HaWebSocketService{
       final data = jsonDecode(message);
       if(data['type'] == 'auth_required'){
         sendAuth();
+      }
+      if(data['type'] == 'auth_ok'){
+        subscribetoEvents();
+      }
+
+      if(data['type'] == 'event'){
+        final event = data['event'];
+
+        if(event['event_type']== 'state_changed'){
+          final entityId = event['data']['entity_id'];
+          final newStateObj = event['data']['new_state'];
+
+          if(newStateObj['state'] != null){
+            final state = newStateObj['state'];
+
+            if(entityId.startsWith('switch.')){
+              onDeviceUpdate(entityId,state);
+            }
+          }
+
+        }
+
+
+
       }
 
     });

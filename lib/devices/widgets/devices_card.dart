@@ -65,7 +65,6 @@ class DevicesCard extends StatelessWidget{
           ),
           const SizedBox(height: 10),
 
-          // 🔥 THIS IS THE IMPORTANT LINE
           content,
         ],
       ),

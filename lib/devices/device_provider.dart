@@ -12,6 +12,15 @@ class DeviceProvider extends ChangeNotifier{
 
   DeviceProvider(this._service);
 
+  late HaWebSocketService _ws;
+
+  void initWebSocket(){
+    _ws = HaWebSocketService(updatedDeviceFromWS);
+    _ws.connect();
+  }
+
+
+
   final List<DeviceModel> _devices =[];
   List<DeviceModel> get devices => _devices;
   DeviceStatus _status = DeviceStatus.idle;
@@ -67,10 +76,33 @@ class DeviceProvider extends ChangeNotifier{
     _devices.clear();
     notifyListeners();
 
-
   }
 
+  void updatedDeviceFromWS(String entityId, String newState){
 
+    DeviceModel? device;
 
+    try{
+      device = _devices.firstWhere((d)=>d.id == entityId);
+    }
+    catch (_){
+      device = null;
+    }
+
+    if(device!=null){
+
+      final updateDevice = device.copyWith(
+        powerState: newState == 'on' ? PowerState.on : PowerState.off
+      );
+
+      final index = _devices.indexOf(device);
+
+      devices[index] = updateDevice;
+
+      notifyListeners();
+
+    }
+
+  }
 
 }
