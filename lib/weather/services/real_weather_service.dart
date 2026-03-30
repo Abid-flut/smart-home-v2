@@ -1,3 +1,5 @@
+import 'package:smart_home_v2/core/config/weather_config.dart';
+
 import 'weather_service.dart';
 import 'package:smart_home_v2/weather/models/weather_model.dart';
 import 'dart:convert';
@@ -9,10 +11,10 @@ class RealWeatherService implements WeatherService{
   @override
   Future<WeatherModel> fetchWeather(String city) async{
 
-    const String apiKey = "99c13c6467d5ac8e1a6e11bb5bd3b0db";
+
 
     final url = Uri.parse(
-      "https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&appid=$apiKey",
+      "https://api.openweathermap.org/data/2.5/weather?q=$city&units=metric&appid=${WeatherConfig.apiKey}",
     );
 
     final response = await http.get(url);

@@ -33,7 +33,7 @@ migrate_working_dir/
 .pub/
 /build/
 lib/core/config/ha_config.dart
-
+lib/core/config/weather_config.dart
 # Symbolication related
 app.*.symbols
 
