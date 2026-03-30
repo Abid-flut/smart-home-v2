@@ -160,7 +160,7 @@ Live demonstration of real-time device control and synchronization using WebSock
 **Abid Ahmed**  
 Junior Flutter Developer  
 
-📧 abid.ivan01@gmail.com  
+📧 abidahmeddddd.com  
 🔗 GitHub: https://github.com/Abid-flut  
 🔗 LinkedIn: https://www.linkedin.com/in/abid-ahmed-flut/
 
