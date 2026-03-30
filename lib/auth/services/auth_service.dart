@@ -4,8 +4,8 @@ abstract class AuthService {
 
   Future<AuthUser> login(String username,String password) ;
 
-  Future<void> logout() ;
+ Future<void> logout() ;
 
-  Future<AuthUser?> getCurrentUser();
+ Future<AuthUser?> getCurrentUser();
 
 }
