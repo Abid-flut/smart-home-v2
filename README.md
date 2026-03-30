@@ -40,23 +40,25 @@ It focuses on:
 
 ```
 UI (Flutter Widgets)
-↓
+ ↓
 Providers (State Management - SSOT)
-├── AuthProvider
-├── DeviceProvider
-└── WeatherProvider
-↓
+   ├── AuthProvider
+   ├── DeviceProvider
+   └── WeatherProvider
+ ↓
 Coordinator (Cross-domain orchestration)
-↓
+ ↓
 Services
-├── FirebaseAuthService
-├── HaDeviceService (REST API)
-└── HaWebSocketService (Real-time)
-↓
-Home Assistant + Firebase + Weather API
+   ├── FirebaseAuthService
+   ├── HaDeviceService (REST API)
+   └── HaWebSocketService (Real-time)
+ ↓
+Backend
+   ├── Firebase (Authentication)
+   ├── Home Assistant (Devices)
+   └── Weather API
 
 ```
-
 
 ---
 
