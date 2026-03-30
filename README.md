@@ -142,7 +142,10 @@ Backend
 
 Live demonstration of real-time device control and synchronization using WebSocket.
 
-<video src="https://github.com/user-attachments/assets/689f1350-b28d-4f12-9b43-fd3be0d9e184" controls width="600"></video>
+
+
+
+<video src="https://github.com/user-attachments/assets/6892fcd2-01b3-4e91-828b-19efdddc3ca4" controls width="600"></video>
 
 ---
 
